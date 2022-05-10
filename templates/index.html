@@ -23,40 +23,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <script src="https://kit.fontawesome.com/3310fda83a.js" crossorigin="anonymous"></script>
 
+        <!-- moodlog JS CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='./css/common.css') }}">
+        <script src="{{ url_for('static',filename='./js/common.js') }}"></script>
+
         <script>
         </script>
-
-        <style>
-            *{
-                font-family: 'Noto Sans KR', sans-serif;
-            }
-            #title{
-                font-weight: 800;
-                font-size: 2rem;
-                font-family: 'Gugi', cursive;
-                font-family: 'Londrina Shadow', cursive;
-            }
-            #section_hero{
-                text-align: center;
-            }
-            #section_filter{
-                width: 90%;
-                margin: 0 auto;
-            }
-            #section_mainbody{
-                width: 80%;
-                margin: 0 auto;
-                max-width: 800px;
-            }
-            #section_loading{
-                text-align: center;
-            }
-            #div_addButton{
-                position: fixed;
-                bottom: 10px;
-                right: 10px;
-            }
-        </style>
 
     </head>
     <body>
@@ -89,8 +61,9 @@
 
                 <div class="navbar-end">
                     <div class="navbar-item">
+                        <span style="margin-right:10px;">{{nickname}}님 안녕하세요.</span>
                         <div class="buttons">
-                            <a class="button is-danger">
+                            <a class="button is-danger" href="javascript:logout()">
                                 <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             </a>
                         </div>
