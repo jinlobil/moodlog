@@ -28,6 +28,7 @@
         <script src="{{ url_for('static',filename='./js/common.js') }}"></script>
 
         <script>
+
         </script>
 
     </head>
@@ -174,13 +175,76 @@
         <section class="section" id="section_loading">
             <button class="button is-primary is-loading">Loading</button>
         </section>
-        <div id="div_addButton">
-            <button class="button is-success is-rounded is-large">
+        <div id="div_rightButton">
+            <button class="button is-success is-rounded is-large" data-target="div_addPost" onclick="$('#div_addPost').addClass('is-active')">
                 <span><i class="fa-solid fa-plus"></i></span><span style="margin-left:5px;">작성</span>
             </button>
-            <button class="button is-dark is-rounded is-large">
+            <button class="button is-dark is-rounded is-large" onclick="onTop()">
                 <span><i class="fa-solid fa-arrow-up"></i></span>
             </button>
+        </div>
+
+        <div id="div_addPost" class="modal">
+            <div class="modal-background"></div>
+
+            <div class="modal-content">
+                <div class="box">
+                    <div style="margin-bottom:40px;"><strong>🎧 포스트 등록</strong></div>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="{{nickname}}" id="post_userId" disabled>
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="포스트 제목" id="post_title">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-music"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="text" placeholder="Sound Cloud 태그 (전체 태그를 넣어주세요.)" id="post_soundCloudData">
+                            <span class="icon is-small is-left">
+                                <i class="fa-solid fa-link"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <textarea class="textarea" placeholder="메시지 작성" id="post_message"></textarea>
+
+
+                    <div class="select" style="margin-top: 20px;">
+                        <select id="post_selectMood">
+                            <option value="1">Select dropdown</option>
+                            <option value="2">With options</option>
+                        </select>
+                    </div>
+
+                    <div style="margin-top: 30px;">
+                        <button class="button is-success" style="width:100%" onclick="uploadPost()">
+                            <span class="icon is-small">
+                                <i class="fas fa-check"></i>
+                            </span>
+                            <span>저장</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="modal-close is-large" aria-label="close"></button>
         </div>
 
     </body>
