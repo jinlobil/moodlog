@@ -6,10 +6,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for
 from werkzeug.utils import secure_filename
 from datetime import datetime, timedelta
 from pymongo import MongoClient
-import certifi
-
-ca = certifi.where()
-client = MongoClient('mongodb+srv://test:sparta@cluster0.2xioe.mongodb.net/Cluster0?retryWrites=true&w=majority', tlsCAFile=ca)
+client = MongoClient('mongodb+srv://test:sparta@cluster0.2xioe.mongodb.net/Cluster0?retryWrites=true&w=majority')
 db = client.sparta
 
 
@@ -26,32 +23,9 @@ SECRET_KEY = 'SPARTA'
 def home():
     token_receive = request.cookies.get('mytoken')
     try:
-        """ 초기 무드 셋팅용임, 주석 풀면 안되요~ 나중에 자리 옮길 예정
-        docs = [[1, '🚶 길거리에서 흘러나오는 요즘 노래'],
-                [2, '☀️ 아침을 깨우는 굿모닝 뮤직'],
-                [3, '☕️ 나른한 오후 카페에 온것만 같은 편안한 무드'],
-                [4, '🧑🏻‍💻 일하면서 듣기 좋은 브금'],
-                [5, '🤩 내적댄스 유발하는 하우스 뮤직'],
-                [6, '💃 소리벗고 빤스질러'],
-                [7, '🌙 자기전에 꿀잠 예약하는 음악'],
-                [8, '☁️ 내 마음에 구름'],
-                [9, '🫠 아무생각 없을때 들어요'],
-                [10, '🤡 뭔진 모르겠는데 아무튼 신나'],
-                [11, '👀 선생님 혹은 부장님 몰래 듣는 조용한 음악'],
-                [12, '💆‍♂️ 마사지샵에서 나올것 같은 힐링힐링 무드'],
-                [13, '💪 득근용 브금']]
-
-        for doc in docs:
-            print(doc[0], doc[1])
-            mydata = {'mood_num':doc[0], 'mood_name':doc[1]}
-            db.mood_db.insert_one(mydata)
-            print('저장성공')
-        """
-
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        user_info = db.users.find_one({"username": payload['id']})
-        #print(user_info)
-        return render_template('index.html', nickname=user_info["username"])
+
+        return render_template('index.html')
     except jwt.ExpiredSignatureError:
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
